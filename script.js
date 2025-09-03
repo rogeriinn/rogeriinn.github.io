@@ -118,7 +118,7 @@ function obrirInvitacio() {
 
 function entrar() {
   const clave = document.getElementById("clave").value.toLowerCase();
-  const password = "2anysBusi+Busi";
+  const password = "2anysBusi";
 
   if (clave === password) {
     document.getElementById("login").style.display = "none";
@@ -191,3 +191,4 @@ const board = document.getElementById("board");
     board.querySelectorAll(".cell").forEach(cell => cell.innerHTML = "");
 
   }
+
