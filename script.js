@@ -104,7 +104,7 @@ particlesJS("particles-js", {
 });
 
 function obrirInvitacio() {
-  const contra = document.getElementById("contra").value.toLowerCase();
+  const contra = document.getElementById("contra").value;
   const contenido = document.getElementById("contenido");
 
   const password = "abubu1";
@@ -117,7 +117,7 @@ function obrirInvitacio() {
 }
 
 function entrar() {
-  const clave = document.getElementById("clave").value.toLowerCase();
+  const clave = document.getElementById("clave").value;
   const password = "2anysBusi";
 
   if (clave === password) {
@@ -191,4 +191,5 @@ const board = document.getElementById("board");
     board.querySelectorAll(".cell").forEach(cell => cell.innerHTML = "");
 
   }
+
 
