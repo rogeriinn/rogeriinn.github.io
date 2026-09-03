@@ -1,6 +1,16 @@
 const audio = document.getElementById("musica");
 audio.volume = 0.1;
-audio.play();
+
+function iniciarMusica() {
+    audio.play().then(() => {
+        window.removeEventListener("click", iniciarMusica);
+        window.removeEventListener("touchstart", iniciarMusica);
+    }).catch(e => {
+    });
+}
+
+window.addEventListener("click", iniciarMusica);
+window.addEventListener("touchstart", iniciarMusica);
 
 
 // =========================================================================
