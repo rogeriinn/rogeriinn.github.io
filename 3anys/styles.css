@@ -305,6 +305,36 @@ hr {
     }
 }
 
+#connections-screen {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden; /* Evita que qualsevol element desbordi la targeta */
+}
+
+#connections-screen .conn-grid {
+  width: 100%;
+  gap: 6px; /* Reduïm l'espai entre caselles */
+}
+
+#connections-screen .conn-tile {
+  min-width: 0; /* Imprescindible en CSS Grid perquè no forci l'ample */
+  aspect-ratio: auto; /* Permet que s'adapti a l'alçada del text */
+  min-height: 52px;
+  padding: 4px 2px;
+  font-size: 11px; /* Font lleugerament més compacta per paraules com DESPERADOS */
+  word-break: break-word; /* Si cal, trenca la paraula per no sortir */
+  hyphens: auto;
+  line-height: 1.15;
+}
+
+@media (max-width: 380px) {
+  #connections-screen .conn-tile {
+    font-size: 10px;
+    padding: 2px;
+  }
+}
+
 
 /* ==========================================================================
    6. WORDLE
