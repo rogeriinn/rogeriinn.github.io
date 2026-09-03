@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="heart.png">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Cumple 2 anys</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Pantalla de login -->
+    <div id="loginContainer">
+        <div id="login">
+            <h2>🔒 Accés privat</h2>
+            <p>Introdueix la paraula màgica:</p>
+            <input type="password" id="clave" placeholder="Escriu aquí...">
+            <button onclick="entrar()">Entrar</button>
+        </div>
+    </div>
+
+
+    <!-- Particules -->
+    <div id="particles-js"></div>
+
+    <!-- Musica -->
+    <audio id="musica" autoplay loop>
+        <source src="dsi.mp3" type="audio/mpeg">
+    </audio>
+    <div id="all" class="hidden">
+
+        <h1>Feliç segon cumple de NOS! 💖</h1>
+
+        <!-- Imatge modal -->
+        <div id="myModal" class="modal hidden">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img-modal">
+            <div id="caption"></div>
+        </div>
+
+        <div id="galeria"></div>
+
+
+        <h2>3 en ralla busin</h2>
+        <div id="board">
+        </div>
+        <p id="message"></p>
+        <button onclick="reiniciarJoc()">Reiniciar joc</button>
+
+        <div id="sobre">
+            <h3>💌 Invitació secreta</h3>
+            <p>Introdueix la paraula màgica per obrir-lo:</p>
+            <input type="password" id="contra" placeholder="Escriu la paraula...">
+            <button onclick="obrirInvitacio()">Obrir</button>
+
+            <div id="contenido" class="hidden">
+                <h2>🎉 Sorpresa! 🎉</h2>
+                <p>Estàs invitada a sopar amb EL MI aquesta nit.</p>
+                <p><b>Ubicació: </b>La Tagliatella</p>
+                <p><b>Hora: </b>21:15</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

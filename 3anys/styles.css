@@ -1,0 +1,603 @@
+/* ==========================================================================
+   1. BASES GLOBALS & FONS EDITORIAL CÀLID
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Fons paper càlid amb trama de punts subtils estil impremta */
+    background-color: #f7f4ed;
+    background-image: radial-gradient(#d8d3c5 1px, transparent 1px);
+    background-size: 16px 16px;
+    color: #1a1a1a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 24px 14px 60px;
+    min-height: 100vh;
+}
+
+
+/* ==========================================================================
+   2. CONTENIDORS I TARGETES DE JOC
+   ========================================================================== */
+
+.game-screen {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    border: 2px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 24px 16px;
+    box-shadow: 4px 4px 0px #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.game-header {
+    text-align: center;
+}
+
+.game-header h1 {
+    font-family: "Georgia", "Charter", "Times New Roman", serif;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.game-header p {
+    font-size: 13px;
+    color: #666;
+}
+
+
+/* Separador subtil entre seccions */
+
+hr {
+    width: 100%;
+    max-width: 500px;
+    border: 0;
+    border-top: 2px dashed #d1ccbe;
+}
+
+
+/* ==========================================================================
+   3. BANNER D'ALERTA (INTRO)
+   ========================================================================== */
+
+.intro-card {
+    width: 100%;
+    max-width: 500px;
+    background: #fffdf7;
+    border: 2px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 22px 18px;
+    text-align: center;
+    box-shadow: 4px 4px 0px #1a1a1a;
+}
+
+.intro-tag {
+    display: inline-block;
+    background: #ffd644;
+    color: #111;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1.5px solid #111;
+    margin-bottom: 12px;
+}
+
+.intro-title {
+    font-family: "Georgia", serif;
+    font-size: 17px !important;
+    font-weight: 700;
+    line-height: 1.45;
+    color: #111;
+    margin-bottom: 14px;
+}
+
+.intro-alert {
+    background: #feebe8;
+    border: 1.5px dashed #c5221f;
+    color: #900;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 8px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+}
+
+
+/* ==========================================================================
+   4. BOTONS COMUNS (EFECTE PREMSA FÍSICA)
+   ========================================================================== */
+
+.conn-btn {
+    background: #ffffff;
+    border: 2px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #1a1a1a;
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.conn-btn:hover {
+    background: #fdfaf3;
+}
+
+.conn-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px #1a1a1a;
+}
+
+.conn-btn-submit {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+.conn-btn-submit:hover {
+    background: #333333;
+}
+
+.conn-btn-submit:disabled {
+    background: #e6e4dc;
+    color: #999;
+    border-color: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ==========================================================================
+   5. CONNECTIONS
+   ========================================================================== */
+
+#connections-screen .conn-toast {
+    position: fixed;
+    top: 18px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    z-index: 100;
+}
+
+#connections-screen .conn-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#connections-screen .conn-solved-categories {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#connections-screen .conn-solved-card {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #1a1a1a;
+    text-align: center;
+    box-shadow: 2px 2px 0px #1a1a1a;
+    animation: connPopIn 0.25s ease-out;
+}
+
+#connections-screen .conn-solved-title {
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+#connections-screen .conn-solved-words {
+    font-size: 13px;
+}
+
+#connections-screen .conn-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+#connections-screen .conn-tile {
+    aspect-ratio: 1.25;
+    background: #eeece2;
+    border: 2px solid #1a1a1a;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4px;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #1a1a1a;
+    transition: background 0.1s, transform 0.08s;
+}
+
+#connections-screen .conn-tile.selected {
+    background: #50504a;
+    color: #ffffff;
+}
+
+#connections-screen .conn-tile:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px #1a1a1a;
+}
+
+#connections-screen .cat-yellow {
+    background: #fbd65c;
+}
+
+#connections-screen .cat-green {
+    background: #a4c95f;
+}
+
+#connections-screen .cat-blue {
+    background: #a8caf4;
+}
+
+#connections-screen .cat-purple {
+    background: #c694d1;
+}
+
+#connections-screen .conn-mistakes {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+#connections-screen .conn-dot {
+    width: 10px;
+    height: 10px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    transition: opacity 0.2s;
+}
+
+#connections-screen .conn-dot.lost {
+    opacity: 0.15;
+}
+
+#connections-screen .conn-actions {
+    display: flex;
+    gap: 8px;
+}
+
+@keyframes connPopIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* ==========================================================================
+   6. WORDLE
+   ========================================================================== */
+
+#wordle-screen .wdl-board {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+#wordle-screen .wdl-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+#wordle-screen .wdl-cell {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #ccc9be;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    user-select: none;
+    background: #fff;
+}
+
+#wordle-screen .wdl-cell.filled {
+    border-color: #1a1a1a;
+}
+
+#wordle-screen .wdl-cell.correct {
+    background: #6aaa64;
+    color: #fff;
+    border-color: #1a1a1a;
+}
+
+#wordle-screen .wdl-cell.present {
+    background: #c9b458;
+    color: #fff;
+    border-color: #1a1a1a;
+}
+
+#wordle-screen .wdl-cell.absent {
+    background: #787c7e;
+    color: #fff;
+    border-color: #1a1a1a;
+}
+
+#wordle-screen .wdl-keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+#wordle-screen .wdl-kb-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+#wordle-screen .wdl-key {
+    background: #eeece2;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 5px;
+    height: 44px;
+    min-width: 28px;
+    padding: 0 8px;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 1px 1px 0px #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#wordle-screen .wdl-key.wide {
+    min-width: 48px;
+    font-size: 11px;
+}
+
+#wordle-screen .wdl-key:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
+#wordle-screen .wdl-key.correct {
+    background: #6aaa64;
+    color: #fff;
+}
+
+#wordle-screen .wdl-key.present {
+    background: #c9b458;
+    color: #fff;
+}
+
+#wordle-screen .wdl-key.absent {
+    background: #787c7e;
+    color: #fff;
+}
+
+
+/* ==========================================================================
+   7. WHACK-A-MOLE ARCADE
+   ========================================================================== */
+
+#mole-screen .mole-scoreboard {
+    display: flex;
+    gap: 12px;
+}
+
+#mole-screen .mole-score-pill {
+    background: #fbf9f2;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 13px;
+    border: 2px solid #1a1a1a;
+    box-shadow: 2px 2px 0px #1a1a1a;
+}
+
+#mole-screen .mole-grid {
+    width: 100%;
+    max-width: 320px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 10px 0;
+}
+
+#mole-screen .mole-hole {
+    aspect-ratio: 1;
+    background: #e2ded4;
+    border-radius: 50%;
+    border: 3px solid #1a1a1a;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+#mole-screen .mole-target {
+    width: 76%;
+    height: 76%;
+    border-radius: 50%;
+    position: absolute;
+    left: 12%;
+    bottom: -100%;
+    cursor: pointer;
+    user-select: none;
+    transition: bottom 0.12s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    /* Configuració de la teva imatge */
+    background-image: url('../2anys/cara-roger.png');
+    /* Canvia pel nom exacte del teu fitxer */
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Elimina o buida aquesta regla perquè no surti la icona sobre la foto */
+
+#mole-screen .mole-target::after {
+    content: "";
+}
+
+#mole-screen .mole-target.up {
+    bottom: 10%;
+}
+
+#mole-screen .mole-target.bonked {
+    transform: scale(0.85);
+}
+
+
+/* ==========================================================================
+   8. TARGETES DE PISTES DESBLOQUEJADES
+   ========================================================================== */
+
+.reward-modal {
+    display: none;
+    width: 100%;
+    background: #fcfcfc;
+    border: 2px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 3px 3px 0px #1a1a1a;
+}
+
+.reward-modal h2 {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.reward-box {
+    background: #eef7ee;
+    border: 1.5px dashed #2bb24c;
+    border-radius: 8px;
+    padding: 10px;
+    display: inline-block;
+    min-width: 160px;
+}
+
+.reward-key-text {
+    font-family: "Georgia", serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #1a6b2d;
+}
+
+
+/* ==========================================================================
+   4. MODALS I RECOMPENSES DE PANTALLA
+   ========================================================================== */
+
+.reward-modal {
+    display: none;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 24px 16px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.reward-box {
+    margin: 16px 0;
+    padding: 14px;
+    background: #f4fbf7;
+    border: 1px dashed #2bb24c;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.reward-key-text {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #2bb24c;
+}
+
+#sobre {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    width: 320px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#sobre input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+#sobre button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #ff6fa5;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#sobre button:hover {
+    background: #ff4c88;
+}
+
+#contenido {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-top: 2px dashed #ff6fa5;
+}
+
+.hidden {
+    display: none;
+}

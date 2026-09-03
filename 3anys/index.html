@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>3 anys uba</title>
+</head>
+
+<body style="flex-direction: column; align-items: center; gap: 40px;">
+
+    <!-- Musica -->
+    <audio id="musica" autoplay loop>
+        <source src="kahoot.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- TÍTOL INTRO -->
+    <div class="intro-card">
+        <div class="intro-tag">⚠️ ALERTA DE MÀXIMA IMPORTÀNCIA</div>
+        <h1 class="intro-title">
+            OH UBA, la teva invitació al nostre sopar s'ha encriptat amb una contrasenya i has de superar els jocs per poder obrir-la.
+            <br><br> Cada joc que superis et donarà una part de la contrasenya i l'hauràs de posar al final.
+        </h1>
+        <div class="intro-alert">
+            REPETEIXO: SI NO SUPERES ELS JOCS NO PODREM ANAR A SOPAR!!!
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JOC 1: CONNECTIONS                         -->
+    <!-- ========================================== -->
+    <div id="connections-screen" class="game-screen">
+        <div class="conn-toast" id="toast">Ja has provat aquesta combinació!</div>
+
+        <div class="game-header">
+            <h1>CONNECTIONS BUSO</h1>
+        </div>
+
+        <div class="conn-solved-categories" id="solved-box"></div>
+
+        <div class="conn-grid" id="tiles-grid"></div>
+
+        <div class="conn-mistakes" id="mistakes-box">
+            <span>Intents restants:</span>
+            <div class="conn-dot"></div>
+            <div class="conn-dot"></div>
+            <div class="conn-dot"></div>
+            <div class="conn-dot"></div>
+        </div>
+
+        <div class="conn-actions" id="action-buttons">
+            <button class="conn-btn" onclick="shuffleTiles()">Barrejar</button>
+            <button class="conn-btn" onclick="deselectAll()">Deseleccionar</button>
+            <button class="conn-btn conn-btn-submit" id="submit-btn" onclick="checkGuess()" disabled>Enviar</button>
+        </div>
+
+        <div class="reward-modal" id="victory-modal">
+            <h2>PRIMERA PISTA</h2>
+            <div class="reward-box">
+                <span class="reward-key-text">cumple</span>
+            </div>
+        </div>
+    </div>
+
+    <hr style="width: 100%; max-width: 520px; border: 0; border-top: 1px solid #e0e0e0;" />
+
+    <!-- ========================================== -->
+    <!-- JOC 2: WORDLE                              -->
+    <!-- ========================================== -->
+    <div id="wordle-screen" class="game-screen">
+        <div class="game-header">
+            <h1>WORDLE BUBUSERO</h1>
+        </div>
+
+        <div class="wdl-board" id="board"></div>
+
+        <div class="wdl-keyboard" id="keyboard"></div>
+
+        <div class="reward-modal" id="wdl-reward">
+            <h2>SEGONA PISTA</h2>
+            <div class="reward-box">
+                <span class="reward-key-text" id="reward-key">numero3</span>
+            </div>
+        </div>
+    </div>
+
+
+    <hr style="width: 100%; max-width: 520px; border: 0; border-top: 1px solid #e0e0e0;" />
+
+    <!-- ========================================== -->
+    <!-- JOC 3: WHACK-A-MOLE ARCADE                 -->
+    <!-- ========================================== -->
+    <div id="mole-screen" class="game-screen">
+        <div class="game-header">
+            <h1>APIXA ELS BUSOS</h1>
+            <p>Apixa 15 busos abans que s'acabi el temps</p>
+        </div>
+
+        <div class="mole-scoreboard">
+            <div class="mole-score-pill">Punts: <span id="mole-score">0</span>/15</div>
+            <div class="mole-score-pill">Temps: <span id="mole-time">20</span>s</div>
+        </div>
+
+        <div class="mole-grid" id="mole-grid">
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+            <div class="mole-hole">
+                <div class="mole-target" onclick="hitMole(this)"></div>
+            </div>
+        </div>
+
+        <div class="mole-actions">
+            <button class="conn-btn conn-btn-submit" id="start-mole-btn" onclick="startMoleGame()">Començar partida</button>
+        </div>
+
+        <div class="reward-modal" id="mole-reward">
+            <h2>TERCERA PISTA</h2>
+            <div class="reward-box">
+                <span class="reward-key-text">de_natros</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Invitació sopar -->
+    <div id="sobre">
+        <h3>Invitació sopar</h3>
+        <p>Introdueix la contrasenya per obrir-la:</p>
+        <input type="password" id="contra" placeholder="Escriu la paraula...">
+        <button onclick="obrirInvitacio()">Obrir</button>
+
+        <div id="contenido" class="hidden">
+            <h2> Sorpresa! </h2>
+            <p>Estàs invitada a sopar amb EL MI aquesta nit.</p>
+            <p><b>Ubicació: </b>Níam</p>
+            <p><b>Hora: </b>21:30</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
