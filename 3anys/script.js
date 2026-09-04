@@ -23,7 +23,7 @@ const CATEGORIES = [{
 }, {
     name: "ÚNIQUES samarretes que portes a l'estiu.",
     colorClass: "cat-green",
-    words: ["Flèndit", "Paulaner", "Porc", "La Cava"]
+    words: ["Flèndit", "Paulaner", "Tossino", "La Cava"]
 }, {
     name: "Coses que t'has deixat a la meva habitació.",
     colorClass: "cat-blue",
@@ -141,7 +141,7 @@ function checkGuess() {
         mistakesLeft--;
         updateMistakesUI();
         if (mistakesLeft === 0) {
-            alert("T'has quedat sense intents! Però com que és el nostre aniversari, et deixo seguir jugant 😉");
+            alert("Bueno uba et dono 4 intents més...");
             mistakesLeft = 4;
             resetMistakesUI();
         }
